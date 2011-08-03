@@ -22,11 +22,11 @@
 		<gap:platform name="blackberry" project="widgets"/>
 	</gap:platforms>
 
-	<icon src="icon.png" gap:role="default" />
+	<icon src="images/icon.png" gap:role="default" />
 
 	<feature name="http://api.phonegap.com/1.0/network"/>
 	
-	<gap:splash src="spash/splash.png" width="1024" height="768" /> 
+	<gap:splash src="splash/splash.png" width="1024" height="768" /> 
 
 	<!-- sample preference specification -->
 	<!-- <preference name="autorotate" value="false" readonly="true"/> -->
