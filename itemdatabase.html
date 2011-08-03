@@ -32,15 +32,30 @@
 
 			<div class="content-secondary ui-body-d">
 				<div data-role="collapsible" data-collapsed="true" data-theme="b">
-					<h3>Open Main Menu</h3>
+					<h3>Country Selector</h3>
 					<ul data-role="listview" data-dividertheme="b">
-						<li data-role="list-divider">AlphaZone4.com</li>
-						<li><a href="news.html" rel=external>News Archive</a></li>
-						<li><a href="itemdatabase.html" rel=external>Item
-								Database</a></li>
-						<li><a href="spaces.html" rel=external>Home Spaces</a></li>
-						<li><a href="events.html" rel=external>Event Calendar</a></li>
-						<li data-theme="a"><a href="javascript:history.go(-1)">Back</a>
+						<li data-role="list-divider">Item Database</li>
+						<li>
+							<a href="javascript:database.az4database('loadCat', 1); return false;">
+								<img class="ui-li-icon" src='images/eusml.png' /> Europe
+							</a>
+						</li>
+						<li>
+							<a href="javascript:database.az4database('loadCat', 110); return false;">
+								<img class="ui-li-icon" src='images/ussml.png' /> America
+							</a>
+						</li>
+						<li>
+							<a href="javascript:database.az4database('loadCat', 383); return false;">
+								<img class="ui-li-icon" src='images/jpsml.png' /> Japan
+							</a>
+						</li>
+						<li>
+							<a href="javascript:database.az4database('loadCat', 286); return false;">
+								<img class="ui-li-icon" src='images/hksml.png' /> Asia
+							</a>
+						</li>
+						<li data-theme="a"><a href="javascript:history.go(-1)">Main Menu</a>
 						</li>
 					</ul>
 				</div>
@@ -62,7 +77,7 @@
 				navigate : true,
 				api_base : "http://alphazone4.com/api/"
 			});
-	</script>
+		</script>
 
 	</div>
 </body>
