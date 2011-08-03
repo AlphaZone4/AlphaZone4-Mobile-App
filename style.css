@@ -89,7 +89,7 @@ nav { margin: 0; }
 
 /* docs site layout */
 
-@media all and (min-width: 800px){
+@media all and (min-width: 1150px){
 	
 	.jqm-home {
 		position: absolute;
@@ -184,7 +184,7 @@ nav { margin: 0; }
 	
 }
 
-@media all and (min-width: 1200px){
+@media all and (min-width: 1150px){
 	.type-home .ui-content{
 		background-position: 38.5%;
 	}
