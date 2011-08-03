@@ -467,7 +467,7 @@ jQuery(document).ready(function($){
 				// loop through segments of trail and render
 				var h = "<img src='"+settings.api_base+"images/"+data.country.toLowerCase()+"sml.png' class='az4_object' id='home_flag' name='cat_"+data.breadcrumb[0].id+"' /> ";
 				for(var t=0; t<data.breadcrumb.length; t++){
-					h += ((data.breadcrumb[t].name!="Home")?" &gt;":"")+" <a href='#' class='az4_object' name='cat_"+data.breadcrumb[t].id+"' id='cat_"+data.breadcrumb[t].id+"'>"+((data.breadcrumb[t].name!="")?data.breadcrumb[t].name:"???")+"</a>";
+					h += ((data.breadcrumb[t].name!="Home")?" &gt;":"")+" <a href='javascript:database.az4database(\"objectClick\", database); return false;' class='az4_object' name='cat_"+data.breadcrumb[t].id+"' id='cat_"+data.breadcrumb[t].id+"'>"+((data.breadcrumb[t].name!="")?data.breadcrumb[t].name:"???")+"</a>";
 				}
 				$("#az4_crumb").html(h);
 			}
@@ -659,7 +659,12 @@ jQuery(document).ready(function($){
 			}
 			// retrieve element name attribute and test for existance
 			var dat = obj.attr('name');
+			$(this).az4database("doObjectClick", dat);
+			return this;
+		},
+		doObjectClick : function(dat){
 			if (typeof(dat)!=="undefined"){
+				var settings = $(this).az4database('getSettings');
 				// test for type of navigation and call related function
 				if (dat.substr(0,4)=="cat_"){
 					if (settings.database){ // check we're actually part of the database
@@ -814,11 +819,11 @@ jQuery(document).ready(function($){
 		parsePage : function(page){
 			if (typeof(page)!=="undefined"){
 				// render category links
-				page = page.replace(/\[cat=([^\]]+)\]([0-9]+)\[\/cat\]/g,"<a href='#' name='cat_$2' id='caturl_$2' class='az4_object'>$1</a>");
+				page = page.replace(/\[cat=([^\]]+)\]([0-9]+)\[\/cat\]/g,"<a href='javascript:database.az4database('objectClick', database); return false;' name='cat_$2' id='caturl_$2' class='az4_object'>$1</a>");
 				// render update links
-				page = page.replace(/\[update=([^\]]+)\]([0-9]+)\[\/update\]/g,"<a href='#' name='update_$2' id='updateurl_$2' class='az4_object'>$1</a>");
+				page = page.replace(/\[update=([^\]]+)\]([0-9]+)\[\/update\]/g,"<a href='javascript:database.az4database('objectClick', database); return false;' name='update_$2' id='updateurl_$2' class='az4_object'>$1</a>");
 				// render freebie links
-				page = page.replace(/\[free=([^\]]+)\]([A-Z]+)\[\/free\]/g,"<a href='#' name='free_$2' id='freeurl_$2' class='az4_object'>$1</a>");
+				page = page.replace(/\[free=([^\]]+)\]([A-Z]+)\[\/free\]/g,"<a href='javascript:database.az4database('objectClick', database); return false;' name='free_$2' id='freeurl_$2' class='az4_object'>$1</a>");
 				return page;
 			}else{
 				return "";
@@ -853,6 +858,7 @@ jQuery(document).ready(function($){
 		hash : function(hash){
 			var settings = $(this).az4database('getSettings');
 			if (settings.hash){
+				settings.last_loc = document.location.hash;
 				document.location.hash = hash;
 				settings.last_hash = document.location.hash;
 				$(this).data('settings', settings);
@@ -916,6 +922,7 @@ jQuery(document).ready(function($){
 		'loading' : false,
 		'hooks' : {},
 		'initHook' : function(){},
-		'database' : false
+		'database' : false,
+		'last_loc' : "cat1"
 	};
 })(jQuery);
