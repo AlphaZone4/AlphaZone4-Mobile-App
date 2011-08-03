@@ -89,7 +89,7 @@ nav { margin: 0; }
 
 /* docs site layout */
 
-@media all and (min-width: 650px){
+@media all and (min-width: 800px){
 	
 	.jqm-home {
 		position: absolute;
@@ -123,6 +123,9 @@ nav { margin: 0; }
 		width: 45%;
 		background: none;
 		border-top: 0;
+		position: fixed;
+		left: 1px;
+		top: 55px;
 	}
 	.content-secondary,
 	.type-interior .content-secondary {
@@ -179,22 +182,6 @@ nav { margin: 0; }
 		padding: 0;
 	}
 	
-}
-@media all and (min-width: 750px){
-	.type-home .ui-content,
-	.type-interior .ui-content {
-		background-position: 39%;
-	}
-	.content-secondary {
-		width: 34%;
-	}
-	.content-primary {
-		width: 56%;
-		padding-right: 1%;
-	}	
-	.type-interior .ui-content {
-		background-position: 34%;
-	}
 }
 
 @media all and (min-width: 1200px){
