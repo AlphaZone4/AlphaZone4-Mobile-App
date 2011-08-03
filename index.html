@@ -2,11 +2,38 @@
 <html>
 <head>
 <title>AlphaZone4</title>
-<link rel="stylesheet" type="text/css" href="css/style.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="jquery.mobile.1.0b1.min.css" media="all"/>
+<link rel="stylesheet" type="text/css" href="style.css" media="all"/>
 <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery.1.6.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="jquery.mobile.1.0b1.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/logic.js"></script>
 </head>
 <body>
-<h1>Hello World :D :D :D</h1>
+
+<div data-role="page" class="type-interior">
+
+<div data-role="content">
+	
+	<div class="content-primary">
+		<p>Content goes here.</p>
+	</div>
+
+	<div class="content-secondary ui-body-d">
+		<div data-role="collapsible" data-collapsed="true" data-theme="b">
+			<h3>Main Menu</h3>
+			<ul data-role="listview" data-dividertheme="b">
+				<li data-role="list-divider">AlphaZone4</li>
+				<li><a href="news.html">News Archive</a></li>
+				<li><a href="itemdatabase.html">Item Database</a></li>
+				<li><a href="spaces.html">Home Spaces</a></li>
+				<li><a href="events.html">Event Calendar</a></li> 
+				<li data-theme="a"><a href="index.html">Home</a></li>
+			</ul>
+		</div>
+	</div>
+
+
+</div></div>
 </body>
 </html>
