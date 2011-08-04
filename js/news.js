@@ -4,7 +4,7 @@ var newsDb;
 newsRender = function() {
 	var h = "<ul data-role=\"listview\">";
 	for ( var i = 0; i < news.length; i++) {
-		h += "<li><a href=''><img src='" + news[i].image + "' /><h3>"
+		h += "<li><a href='"+news[i].url+"'><img src='" + news[i].image + "' /><h3>"
 				+ news[i].title + "</h3><p>" + news[i].excerpt + "</p>"
 				+ "</a></li>";
 	}
@@ -72,3 +72,6 @@ dbAddHandle(function(db) {
 	newsDb = db;
 	newsUpdate(db); // TODO : add manual refresh button somewhere
 });
+newsInit = function(){
+	newsFetchDb();
+}
