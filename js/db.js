@@ -1,8 +1,39 @@
+var mydb;
+var dbHandles = [];
+dbAddHandle = function(f) {
+	dbHandles.push(f);
+}
 dbErrorHandler = function(transaction, error) {
+	alert(error);
 	console.log(error); // log the error message
 	return true; // rollback transaction
 }
 nullDataHandler = function(transaction, results) {
+	alert(results);
+}
+createTables = function() {
+	try {
+		// start transaction
+		mydb.transaction(function(transaction) {
+			// news table
+			transaction.executeSql("CREATE TABLE IF NOT EXISTS news("
+					+ "id INTEGER NOT NULL PRIMARY KEY,"
+					+ "title TEXT NOT NULL DEFAULT '', "
+					+ "excerpt TEXT NOT NULL DEFAULT '', "
+					+ "article TEXT NOT NULL DEFAULT '', "
+					+ "url TEXT NOT NULL DEFAULT '', "
+					+ "image TEXT NOT NULL DEFAULT '');");
+			//transaction.executeSql("INSERT INTO news (id, title, excerpt, article, url, image) VALUES (1, 'Test', 'HOWDY', 'hrdgdfg', 'http://alphazone4.com', 'http://alphazone4.com/wp-content/uploads/2011/08/6005882414_113646ba40_o-80x80.jpg');");
+			// settings
+			transaction.executeSql("CREATE TABLE IF NOT EXISTS settings("
+					+ "id INTEGER NOT NULL PRIMARY KEY,"
+					+ "key TEXT NOT NULL DEFAULT '', "
+					+ "data TEXT NOT NULL DEFAULT '');");
+		});
+	} catch (e) {
+		alert(e.message);
+		return;
+	}
 }
 dbSetup = function() {
 	try {
@@ -12,7 +43,12 @@ dbSetup = function() {
 			var displayName = 'AlphaZone4 App Database';
 			var maxSize = 65536; // in bytes
 			mydb = openDatabase(shortName, version, displayName, maxSize);
+			// setup database tables etc.
 			createTables();
+			// call dbHandles
+			for ( var i = 0; i < dbHandles.length; i++) {
+				dbHandles[i](mydb);
+			}
 		}
 	} catch (e) {
 		// Error handling code goes here.
@@ -22,25 +58,6 @@ dbSetup = function() {
 		} else {
 			alert("Unknown error " + e + ".");
 		}
-		return;
-	}
-}
-createTables = function() {
-	try {
-		// news table
-		mydb.transaction(function(transaction) {
-			transaction.executeSql("CREATE TABLE IF NOT EXISTS news("
-					+ "id INTEGER NOT NULL PRIMARY KEY,"
-					+ "title TEXT NOT NULL DEFAULT '', "
-					+ "excerpt TEXT NOT NULL DEFAULT '', "
-					+ "artricle TEXT NOT NULL DEFAULT '', "
-					+ "url TEXT NOT NULL DEFAULT '', "
-					+ "image TEXT NOT NULL DEFAULT '');", [], nullDataHandler,
-					errorHandler);
-		});
-
-	} catch (e) {
-		alert(e.message);
 		return;
 	}
 }
