@@ -16,7 +16,6 @@ createTables = function() {
 		// start transaction
 		mydb.transaction(function(transaction) {
 			// news table
-			transaction.executeSql("DROP TABLE news");
 			transaction.executeSql("CREATE TABLE IF NOT EXISTS news("
 					+ "id INTEGER NOT NULL PRIMARY KEY,"
 					+ "title TEXT NOT NULL DEFAULT '', "

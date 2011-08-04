@@ -4,7 +4,6 @@ var newsDb;
 newsRender = function() {
 	var h = "<ul data-role=\"listview\">";
 	for ( var i = 0; i < news.length; i++) {
-		// print_r(news);
 		h += "<li><a href=''><img src='" + news[i].image + "' /><h3>"
 				+ news[i].title + "</h3><p>" + news[i].excerpt + "</p>"
 				+ "</a></li>";
@@ -19,11 +18,9 @@ newsFetchDb = function(db){
 		tx.executeSql('SELECT * FROM news ORDER BY id DESC', [], function(db, rs) {
 			// loop through each sql result and add to news object
 			news = [];
-			//alert(rs.rows.length);
 			for (var i=0; i<rs.rows.length; i++){
 				news.push(rs.rows.item(i));
 			}
-			// render news
 			newsRender();
 		}, function(error) {
 			alert("DBNews error 1: " + error);
