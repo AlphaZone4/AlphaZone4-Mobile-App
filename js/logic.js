@@ -5,6 +5,7 @@
  * returns true if internet access is available, false otherwise
  */
 function connectionCheck(){
+	if (typeof(navigator.network)=="undefined") return true;
 	var networkState = navigator.network.connection.type;
 	if ((networkState == Connection.UNKNOWN)||(networkState == Connection.NONE)){
 		return false;

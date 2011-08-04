@@ -16,9 +16,10 @@ newsRender = function() {
 newsFetchDb = function(db){
 	if (!db) db = newsDb;
 	db.transaction(function(tx) {
-		tx.executeSql('SELECT * FROM news', [], function(db, rs) {
+		tx.executeSql('SELECT * FROM news ORDER BY id DESC', [], function(db, rs) {
 			// loop through each sql result and add to news object
 			news = [];
+			//alert(rs.rows.length);
 			for (var i=0; i<rs.rows.length; i++){
 				news.push(rs.rows.item(i));
 			}
@@ -29,14 +30,41 @@ newsFetchDb = function(db){
 		});
 	});
 }
+newsFetchAZ4 = function(db) {
+	if (!db)
+		db = newsDb;
+	// update database with data from the interwebs
+	$.ajax({
+		url : 'http://alphazone4.com/api/?method=news_feed',
+		dataType : 'json',
+		success : function(data) {
+			// data fetched, add to database
+			try {
+				db.transaction(function(tx) {
+					for ( var i = 0; i < data.length; i++ ) {
+						// add articles to database safely
+						tx.executeSql("INSERT INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?);",
+								[data[i].id, data[i].title, data[i].excerpt, data[i].article, data[i].url, data[i].image]);
+					}
+					// update the news object
+					newsFetchDb(db);
+				});
+			}catch(e){
+				print_r(e);
+			}
+		},
+		error : function(data){
+			print_r(data);
+		}
+	});
+}
 // generic news update function
 newsUpdate = function(db){
 	if (!db) db = newsDb;
 	// check if we're online
 	if (connectionCheck()) {
-		// TODO : fetch latest news from website api
-		// update the news object
-		newsFetchDb(db);
+		// fetch latest news from website api
+		newsFetchAZ4(db);
 	}else{
 		// just fetch cached news
 		newsFetchDb(db);
@@ -45,4 +73,5 @@ newsUpdate = function(db){
 // onCreate handle
 dbAddHandle(function(db) {
 	newsDb = db;
+	newsUpdate(db); // TODO : add manual refresh button somewhere
 });
