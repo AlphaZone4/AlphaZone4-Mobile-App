@@ -11,9 +11,10 @@
 <script type="text/javascript" charset="utf-8" src="jquery162min.js"></script>
 <script type="text/javascript" charset="utf-8"
 	src="jquerymobile10b1min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/db.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/logic.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/itemdatabase.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/db.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/news.js"></script>
 </head>
 <body>
 	<div data-role="page">
@@ -26,7 +27,7 @@
 				data-iconpos="notext" class="ui-btn-left">Home</a>
 		</div>
 
-		<div data-role="content">
+		<div data-role="content" id='news_list'>
 			<ul data-role="listview">
 				<li><a href="index.html">
 					<img src="http://alphazone4.com/wp-content/uploads/2011/08/6005882414_113646ba40_o-80x80.jpg" />
@@ -37,7 +38,9 @@
 		</div>
 
 		<footer data-role="footer"></footer>
-
+		<script type="text/javascript">
+			newsUpdate();
+		</script>
 	</div>
 </body>
 </html>
