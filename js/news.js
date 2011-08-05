@@ -2,14 +2,13 @@ var news = [];
 var newsDb;
 // renderer
 newsRender = function() {
-	var h = "<ul data-role=\"listview\">";
+	var h = "";
 	for ( var i = 0; i < news.length; i++) {
 		h += "<li><a href='"+news[i].url+"'><img src='" + news[i].image + "' /><h3>"
 				+ news[i].title + "</h3><p>" + news[i].excerpt + "</p>"
 				+ "</a></li>";
 	}
-	h += "</ul>";
-	$("#news_list").html(h).page();
+	$("#news_list").html(h);
 }
 // fetch news array from the database
 newsFetchDb = function(db){
@@ -21,7 +20,6 @@ newsFetchDb = function(db){
 			for (var i=0; i<rs.rows.length; i++){
 				news.push(rs.rows.item(i));
 			}
-			newsRender();
 		}, function(error) {
 			alert("DBNews error 1: " + error);
 		});
@@ -74,4 +72,5 @@ dbAddHandle(function(db) {
 });
 newsInit = function(){
 	newsFetchDb();
+	newsRender();
 }
