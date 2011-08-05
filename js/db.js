@@ -23,7 +23,6 @@ createTables = function() {
 					+ "article TEXT NOT NULL DEFAULT '', "
 					+ "url TEXT NOT NULL DEFAULT '', "
 					+ "image TEXT NOT NULL DEFAULT '');");
-			//transaction.executeSql("INSERT INTO news (id, title, excerpt, article, url, image) VALUES (1, 'Test', 'HOWDY', 'hrdgdfg', 'http://alphazone4.com', 'http://alphazone4.com/wp-content/uploads/2011/08/6005882414_113646ba40_o-80x80.jpg');");
 			// settings
 			transaction.executeSql("CREATE TABLE IF NOT EXISTS settings("
 					+ "id INTEGER NOT NULL PRIMARY KEY,"
