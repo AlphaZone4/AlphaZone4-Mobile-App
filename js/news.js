@@ -10,8 +10,12 @@ newsRender = function() {
 				+ "</a></li>";
 		if (i==4) h_main += h;
 	}
-	if ($("#news_list").length>0) $("#news_list").html(h).listview("refresh");
-	if ($("#news_list_summary").length>0) $("#news_list_summary").html(h_main).listview("refresh");
+	if (h!=""){
+		if ($("#news_list").length>0) $("#news_list").html(h).listview("refresh");
+		if ($("#news_list_summary").length>0) $("#news_list_summary").html(h_main).listview("refresh");
+	}else{
+		newsRender();
+	}
 }
 // fetch news array from the database
 newsFetchDb = function(db){
@@ -44,10 +48,13 @@ newsFetchAZ4 = function(db) {
 					for ( var i = 0; i < data.length; i++ ) {
 						// add articles to database safely
 						tx.executeSql("INSERT INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?);",
-								[data[i].id, data[i].title, data[i].excerpt, data[i].article, data[i].url, data[i].image]);
+								[data[i].id, data[i].title, data[i].excerpt, data[i].article, data[i].url, data[i].image],
+								function(){
+									// update the news object
+									newsFetchDb(db);
+								});
 					}
-					// update the news object
-					newsFetchDb(db);
+					
 				});
 			}catch(e){
 				print_r(e);
