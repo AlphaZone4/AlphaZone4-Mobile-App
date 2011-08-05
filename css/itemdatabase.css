@@ -1,153 +1,182 @@
-body{
-	margin:0 !important;
-	padding:0 !important;
+body {
+	margin: 0 !important;
+	padding: 0 !important;
 }
-.az4_box table, tr, td{
-	border:none !important;
+
+.az4_box table,tr,td {
+	border: none !important;
 }
+
 .az4_box {
-	width:100% !important;
-	padding:0 !important;
-	margin:0 !important;
-	margin-top:8px !important;
-	clear:both;
+	width: 100% !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	margin-top: 8px !important;
+	clear: both;
 }
+
 .az4_crumb {
-	padding:8px;
+	padding: 8px;
 }
-.az4_items{
-	padding:0 !important;
-	margin:0 !important;
-	width:100% !important;
+
+.az4_items {
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 100% !important;
 }
+
 .az4_items li {
-	padding:0 !important;
-	margin:0 !important;
-	list-style-type:none !important;
-	display:inline !important;
-	width:140px !important;
-	height:160px;
-	float:left !important;
-	text-align:center !important;
-	background-image:URL("http://www.alphazone4.com/api/images/slab.png");
-	background-repeat:no-repeat !important;
-	background-position:center top !important;
-}
-.az4_object_rating{
-	height:175px !important;
-}
-.az4_featureditem{
-	height:160px !important;
-}
-.az4_items img {
-	padding:6px !important;
-}
-.az4_img {
-	background-image:URL("http://www.alphazone4.com/api/images/loader_sml.gif");
-	background-position:center center;
-	background-repeat:no-repeat;
-	width:140px;
-	height:140px;
-}
-.az4_items .az4_more {
-	background-image:URL("http://www.alphazone4.com/api/images/more.png");
-	position:absolute;
-	width:140px;
-	height:140px;
-}
-.az4_more p{
-	margin-top:13px;
-}
-.az4_items .az4_overlay {
-	position:absolute;
-	width:140px;
-	height:140px;
-}
-.az4_categories{
-	margin:0;
-	padding:0;
-}
-.az4_category {
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-.az4_list{
-	list-style-type:none;
-	margin:0;
-	padding:0;
-}
-#az4_page {
-	margin:12px;
-}
-#az4_loader {
-	display:none;
-	position:fixed;
-	top:50%;
-	left:50%;
-	width:126px;
-	height:22px;
-	margin-top:-11px;
-	margin-left:-63px;
-	z-index:197;
-}
-#az4_object_box {
-	display:none;
-	position:fixed;
-	top:20px;
-	left:50%;
-	width:600px;
-	margin-left:-300px;
-	background-color:#ffffff;
-	z-index:196;
-	padding:8px;
-	border-color:#75a8e6;
-	border-style:double;
-	text-align:left;
-}
-#az4_object_box td{
-	vertical-align:top !important;
-}
-#az4_object_back {
-	display:none;
-	width:100%;
-	height:100%;
-	z-index:195;
-	position:fixed;
-	background-color:rgba(100,100,100,0.5);
-}
-.az4_object_dat {
-	margin:3px;
-	padding:3px;
-	background-color:#f0e090;
-}
-.az4_center {
-	text-align:center;
-	margin:0px !important;
-	padding:0px !important;
-}
-.az4_clear {
-	clear:both;
-}
-.az4database_media{
-	margin:8px;
-}
-.az4_success{
-	background-color:#99ff99;
-	padding:8px;
-}
-.az4_error{
-	background-color:#ff6666;
-	padding:8px;
-}
-.az4_masseditor{
-	padding:5px;
+	padding: 0 !important;
+	margin: 0 !important;
 	list-style-type: none !important;
 	display: inline !important;
-	width:128px;
-	height:165px;
+	width: 140px !important;
+	height: 160px;
+	float: left !important;
+	text-align: center !important;
+	background-image: URL("http://www.alphazone4.com/api/images/slab.png");
+	background-repeat: no-repeat !important;
+	background-position: center top !important;
+}
+
+.az4_object_rating {
+	height: 175px !important;
+}
+
+.az4_featureditem {
+	height: 160px !important;
+}
+
+.az4_items img {
+	padding: 6px !important;
+}
+
+.az4_img {
+	background-image:
+		URL("http://www.alphazone4.com/api/images/loader_sml.gif");
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 140px;
+	height: 140px;
+}
+
+.az4_items .az4_more {
+	background-image: URL("http://www.alphazone4.com/api/images/more.png");
+	position: absolute;
+	width: 140px;
+	height: 140px;
+}
+
+.az4_more p {
+	margin-top: 13px;
+}
+
+.az4_items .az4_overlay {
+	position: absolute;
+	width: 140px;
+	height: 140px;
+}
+
+.az4_categories {
+	margin: 0;
+	padding: 0;
+}
+
+.az4_category {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.az4_list {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#az4_page {
+	margin: 12px;
+}
+
+#az4_loader {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 126px;
+	height: 22px;
+	margin-top: -11px;
+	margin-left: -63px;
+	z-index: 197;
+}
+
+#az4_object_box {
+	display: none;
+	position: fixed;
+	top: 20px;
+	left: 50%;
+	width: 600px;
+	margin-left: -300px;
+	background-color: #ffffff;
+	z-index: 196;
+	padding: 8px;
+	border-color: #75a8e6;
+	border-style: double;
+	text-align: left;
+}
+
+#az4_object_box td {
+	vertical-align: top !important;
+}
+
+#az4_object_back {
+	display: none;
+	width: 100%;
+	height: 100%;
+	z-index: 195;
+	position: fixed;
+	background-color: rgba(100, 100, 100, 0.5);
+}
+
+.az4_object_dat {
+	margin: 3px;
+	padding: 3px;
+	background-color: #f0e090;
+}
+
+.az4_center {
+	text-align: center;
+	margin: 0px !important;
+	padding: 0px !important;
+}
+
+.az4_clear {
+	clear: both;
+}
+
+.az4database_media {
+	margin: 8px;
+}
+
+.az4_success {
+	background-color: #99ff99;
+	padding: 8px;
+}
+
+.az4_error {
+	background-color: #ff6666;
+	padding: 8px;
+}
+
+.az4_masseditor {
+	padding: 5px;
+	list-style-type: none !important;
+	display: inline !important;
+	width: 128px;
+	height: 165px;
 	float: left;
 }
-.az4_masseditor_select{
-	background-color:#FF0000;
+
+.az4_masseditor_select {
+	background-color: #FF0000;
 }
