@@ -12,9 +12,9 @@
 <script type="text/javascript" charset="utf-8"
 	src="jquery.mobile-1.0b2.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/db.js"></script>
-<script type="text/javascript" charset="utf-8" src="js/logic.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/itemdatabase.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/news.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/logic.js"></script>
 </head>
 <body>
 
@@ -29,9 +29,9 @@
 		<div data-role="content">
 			<ul data-role="listview" data-inset="true">
 				<li data-role="list-divider">Main Menu</li>
-				<li><a href="news.html">Latest News</a>
+				<li><a href="#news">Latest News</a>
 				</li>
-				<li><a href="itemdatabase.html">Item Database</a>
+				<li><a href="#store">Item Database</a>
 				</li>
 				<li>
 				<a href='mailto:app@alphazone4.com?subject=AlphaZone4%20Android%20App%20Feedback'>
@@ -55,6 +55,72 @@
 			<p>&copy; 2011 AlphaZone4</p>
 		</div>
 
+	</div>
+	
+	<!-- Item Database -->
+	<div data-role="page" id="store" class="type-interior">
+		<div data-role="header" data-theme="b">
+			<div class='logo'>
+				<img src='images/logo.png' />
+			</div>
+			<a href="javascript:history.go(-1)" data-icon="home"
+				data-iconpos="notext" class="ui-btn-left">Home</a>
+		</div>
+		<div data-role="content">
+			<div class="content-secondary ui-body-d">
+				<div data-role="collapsible" data-collapsed="true" data-theme="b">
+					<h3>Country Selector</h3>
+					<ul data-role="listview" data-dividertheme="b">
+						<li data-role="list-divider">Item Database</li>
+						<li><a
+							href="javascript:database.az4database('loadCat', 1); return false;">
+								<img class="ui-li-icon" src='images/eusml.png' /> Europe </a></li>
+						<li><a
+							href="javascript:database.az4database('loadCat', 110); return false;">
+								<img class="ui-li-icon" src='images/ussml.png' /> America </a></li>
+						<li><a
+							href="javascript:database.az4database('loadCat', 383); return false;">
+								<img class="ui-li-icon" src='images/jpsml.png' /> Japan </a></li>
+						<li><a
+							href="javascript:database.az4database('loadCat', 286); return false;">
+								<img class="ui-li-icon" src='images/hksml.png' /> Asia </a></li>
+						<li data-theme="a"><a href="javascript:history.go(-1)">Main
+								Menu</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="content-primary">
+				<div id='az4_database'></div>
+			</div>
+		</div>
+
+		<div data-role="footer" data-theme="b" class='footer'>
+			<p>&copy; 2011 AlphaZone4</p>
+		</div>
+
+	</div><!-- /Item Database -->
+	
+	<!-- News Feed -->
+	<div data-role="page" id='news'>
+
+		<div data-role="header" data-theme="b">
+			<div class='logo'>
+				<img src='images/logo.png' />
+			</div>
+			<a href="javascript:history.go(-1)" data-icon="home"
+				data-iconpos="notext" class="ui-btn-left">Home</a>
+		</div>
+
+		<div data-role="content">
+			<ul data-role="listview" id='news_list'>
+				<li><a href=""> <img src="images/offline.png" />
+						<h3>Loading...</h3>
+						<p>Make sure you're connected to the network to fetch the
+							latest news for offline viewing</p> </a></li>
+			</ul>
+		</div>
+
+		<footer data-role="footer"></footer>
 	</div>
 </body>
 </html>

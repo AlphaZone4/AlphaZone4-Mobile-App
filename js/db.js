@@ -29,7 +29,9 @@ createTables = function() {
 					+ "key TEXT NOT NULL DEFAULT '', "
 					+ "data TEXT NOT NULL DEFAULT '');");
 		},
-		function(e){}, //blank error
+		function(e){
+			alert(e.message);
+		}, //blank error
 		function(){
 			// call dbHandles
 			for ( var i = 0; i < dbHandles.length; i++) {

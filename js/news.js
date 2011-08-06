@@ -14,10 +14,8 @@ newsRender = function() {
 			h_main += h;
 	}
 	if (h != "") {
-		if ($("#news_list").length > 0)
-			$("#news_list").html(h).listview("refresh");
-		if ($("#news_list_summary").length > 0)
-			$("#news_list_summary").html(h_main).listview("refresh");
+		$("#news_list_summary").html(h_main).listview("refresh");
+		$("#news_list").html(h).listview("refresh");
 	}
 }
 // fetch news array from the database
@@ -43,46 +41,28 @@ newsFetchAZ4 = function(db) {
 	if (!db)
 		db = newsDb;
 	// update database with data from the interwebs
-	$
-			.ajax({
-				url : 'http://alphazone4.com/api/?method=news_feed',
-				dataType : 'json',
-				success : function(data) {
-					// data fetched, add to database
-					try {
-						db
-								.transaction(
-										function(tx) {
-											for ( var i = 0; i < data.length; i++) {
-												// add articles to database
-												// safely
-												tx
-														.executeSql(
-																"INSERT INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?);",
-																[
-																		data[i].id,
-																		data[i].title,
-																		data[i].excerpt,
-																		data[i].article,
-																		data[i].url,
-																		data[i].image ]);
-											}
-										}, function(e) {
-											newsFetchDb();
-											
-										}, function() {
-											// on success, update DB
-											newsFetchDb();
-										});
-					} catch (e) {
-						alert("ERROR 3:::");
-						print_r(e);
+	$.ajax({
+			url : 'http://alphazone4.com/api/?method=news_feed',
+			dataType : 'json',
+			success : function(data) {
+				newsDb.transaction(function(tx){
+					for ( var i = 0; i < data.length; i++) {
+						tx.executeSql('REPLACE INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?)',
+								[	data[i].id,
+									data[i].title,
+									data[i].excerpt,
+									data[i].article,
+									data[i].url,
+									data[i].image ]);
 					}
-				},
-				error : function(data) {
-					print_r(data);
-				}
-			});
+				}, function(e){
+					var h = "<li><img src=\"images/offline.png\" /><h3>Error</h3>" +
+							"<p>There is a PhoneGap bug that refuses database creation on first-run. Restart the app to see news.</p></li>";
+					$("#news_list_summary").html(h).listview("refresh");
+					$("#news_list").html(h).listview("refresh");
+				}, function(){newsFetchDb();});
+			}
+	});
 }
 // generic news update function
 newsUpdate = function(db) {
@@ -91,6 +71,7 @@ newsUpdate = function(db) {
 	// check if we're online
 	if (connectionCheck()) {
 		// fetch latest news from website api
+		newsFetchDb();
 		newsFetchAZ4(db);
 	} else {
 		// just fetch cached news
@@ -102,6 +83,3 @@ dbAddHandle(function(db) {
 	newsDb = db;
 	newsUpdate(db); // TODO : add manual refresh button somewhere
 });
-newsInit = function() {
-	newsFetchDb();
-}

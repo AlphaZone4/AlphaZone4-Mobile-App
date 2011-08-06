@@ -59,3 +59,19 @@ function print_r_(obj, indent)
   }
   return result.replace(/,\n$/, "");
 }
+
+// init function
+var database;
+document.addEventListener("deviceready", function(){
+	// setup database
+	database = $("#az4_database");
+	database.az4database({
+		hash : false,
+		jump : false,
+		cat : 0,
+		navigate : true,
+		api_base : "http://alphazone4.com/api/"
+	});
+	// setup news
+	//newsInit();
+}, false);
