@@ -34,7 +34,7 @@ body {
 	height: 160px;
 	float: left !important;
 	text-align: center !important;
-	background-image: URL("http://www.alphazone4.com/api/images/slab.png");
+	background-image: URL("../images/slab.png");
 	background-repeat: no-repeat !important;
 	background-position: center top !important;
 }
@@ -53,7 +53,7 @@ body {
 
 .az4_img {
 	background-image:
-		URL("http://www.alphazone4.com/api/images/loader_sml.gif");
+		URL("../images/loader_sml.gif");
 	background-position: center center;
 	background-repeat: no-repeat;
 	width: 140px;
@@ -61,7 +61,7 @@ body {
 }
 
 .az4_items .az4_more {
-	background-image: URL("http://www.alphazone4.com/api/images/more.png");
+	background-image: URL("../images/more.png");
 	position: absolute;
 	width: 140px;
 	height: 140px;

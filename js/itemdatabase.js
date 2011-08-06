@@ -19,7 +19,7 @@ jQuery(document)
 					if ($("#az4_loader").length == 0) {
 						$('body')
 								.prepend(
-										"<div id='az4_object_box'></div><div id='az4_object_back'></div><div id='az4_loader'><img src='http://alphazone4.com/api/images/loader.gif' /></div>");
+										"<div id='az4_object_box'></div><div id='az4_object_back'></div><div id='az4_loader'><img src='images/loader.gif' /></div>");
 						$("#az4_object_back").click(function() {
 							$("#az4_object_back").hide();
 							$("#az4_object_box").hide(100);
@@ -422,7 +422,7 @@ jQuery(document)
 							for ( var i = 0; i < data.cats.length; i++) {
 								stats += "<br /><a href='#cat"
 										+ data.cats[i].id + "'><img src='"
-										+ settings.api_base + "/images/"
+										+ settings.image_base + "/images/"
 										+ data.cats[i].country.toLowerCase()
 										+ "sml.png' /> " + data.cats[i].trail
 										+ "</a>";
@@ -436,7 +436,7 @@ jQuery(document)
 							c += "<td class='az4_search_page_" + (i + 1)
 									+ "' name='" + (i + 1)
 									+ "'><a href='#'><img src='"
-									+ settings.api_base + "/images/page"
+									+ settings.image_base + "/images/page"
 									+ (((i + 1) == data.page) ? "_green" : "")
 									+ ".png' /><p>" + (i + 1) + "</p></a></td>";
 						}
@@ -482,7 +482,7 @@ jQuery(document)
 				// draw country flag
 				// loop through segments of trail and render
 				var h = "<img src='"
-						+ settings.api_base
+						+ settings.image_base
 						+ "images/"
 						+ data.country.toLowerCase()
 						+ "sml.png' class='az4_object' id='home_flag' name='cat_"
@@ -527,7 +527,7 @@ jQuery(document)
 				// draw country flag
 				// loop through segments of trail and render
 				var h = "<img src='"
-						+ settings.api_base
+						+ settings.image_base
 						+ "images/"
 						+ data.country.toLowerCase()
 						+ "sml.png' class='az4_object' id='home_flag' name='cat_"
@@ -572,7 +572,7 @@ jQuery(document)
 				// draw country flag
 				// loop through segments of trail and render
 				var h = "<img src='"
-						+ settings.api_base
+						+ settings.image_base
 						+ "images/"
 						+ data.country.toLowerCase()
 						+ "sml.png' class='az4_object' id='home_flag' name='cat_"
@@ -618,12 +618,10 @@ jQuery(document)
 						+ cats[i].id
 						+ "'>"
 						+ ((cats[i].expired == true) ? "<div class='az4_overlay'><img src='"
-								+ settings.api_base
+								+ settings.image_base
 								+ "images/GNO.png' /></div>"
 								: "")
-						+ "<div class='az4_more'><p><strong>"
-						+ cats[i].name
-						+ "</strong></p></div><div class='az4_img' id='az4_cat_image_"
+						+ "<div class='az4_img' id='az4_cat_image_"
 						+ cats[i].id + "'></div><p class='az4_center'>"
 						+ cats[i].name + "</p></li>";
 			}
@@ -680,24 +678,22 @@ jQuery(document)
 							rating_div += rating[j][0];
 						}
 					}
-					h += "<li id='list_"
+					h += "<li name='item_"
+							+ items[i].id
+							+ "' id='list_"
 							+ items[i].id
 							+ "' class='az4_"
 							+ ((staticRender) ? "static_" : "")
 							+ "object"
 							+ rating_class
 							+ "'><div class='az4_overlay'><img src='"
-							+ settings.api_base
+							+ settings.image_base
 							+ "images/"
 							+ ((price == az4lang.prices.gone) ? "G" : "")
 							+ ((price == az4lang.prices.free) ? "F" : "")
 							+ ((price == az4lang.prices.psn) ? "B" : "")
 							+ ((items[i].gender != "") ? items[i].gender : "N")
-							+ "O.png' /></div><div class='az4_more az4_object' name='item_"
-							+ items[i].id
-							+ "'><p><strong>"
-							+ items[i].name
-							+ "</strong></p></div><div class='az4_img' id='az4_item_image_"
+							+ "O.png' /></div><div class='az4_img' id='az4_item_image_"
 							+ items[i].id + "'></div><p class='az4_center'>"
 							+ price + "</p>" + rating_div + "</li>";
 				}
@@ -740,7 +736,7 @@ jQuery(document)
 			}
 			var settings = $(this).az4database('getSettings');
 			$.ajax({
-				url : settings.api_base + '?method=database_item&id=' + id,
+				url : settings.image_base + '?method=database_item&id=' + id,
 				cache : true,
 				dataType : 'json',
 				success : function(dat) {
@@ -766,25 +762,25 @@ jQuery(document)
 			var p;
 			h += "</td><td valign='top'><h2>"
 					+ dat.name
-					+ ((dat.gender != "") ? " <img src='" + settings.api_base
+					+ ((dat.gender != "") ? " <img src='" + settings.image_base
 							+ "images/" + ((dat.gender == "M") ? "" : "fe")
 							+ "male.png' />" : "")
 					+ "</h2><div class='az4_object_dat'>";
 			if (((settings.lockRegion == false) || ("EU" == settings.region) || (!settings.database))
 					&& ((p = $(this).az4database('itemPrice', dat, "EU")) != "(unknown)"))
-				h += "<img src='" + settings.api_base + "images/eusml.png'/> "
+				h += "<img src='" + settings.image_base + "images/eusml.png'/> "
 						+ p + "<br />";
 			if (((settings.lockRegion == false) || ("US" == settings.region) || (!settings.database))
 					&& ((p = $(this).az4database('itemPrice', dat, "US")) != "(unknown)"))
-				h += "<img src='" + settings.api_base + "images/ussml.png'/> "
+				h += "<img src='" + settings.image_base + "images/ussml.png'/> "
 						+ p + "<br />";
 			if (((settings.lockRegion == false) || ("JP" == settings.region) || (!settings.database))
 					&& ((p = $(this).az4database('itemPrice', dat, "JP")) != "(unknown)"))
-				h += "<img src='" + settings.api_base + "images/jpsml.png'/> "
+				h += "<img src='" + settings.image_base + "images/jpsml.png'/> "
 						+ p + "<br />";
 			if (((settings.lockRegion == false) || ("HK" == settings.region) || (!settings.database))
 					&& ((p = $(this).az4database('itemPrice', dat, "HK")) != "(unknown)"))
-				h += "<img src='" + settings.api_base + "images/hksml.png'/> "
+				h += "<img src='" + settings.image_base + "images/hksml.png'/> "
 						+ p + "<br />";
 			var price_add = $(this).az4database('doHook', 'objectDatPrices',
 					dat);
@@ -805,7 +801,7 @@ jQuery(document)
 								+ ((database) ? "category" : "list")
 								+ "' name='cat_" + dat.categories[t].cat_id
 								+ "' id='cat_cat_" + dat.categories[t].cat_id
-								+ "'><img src='" + settings.api_base
+								+ "'><img src='" + settings.image_base
 								+ "images/"
 								+ dat.categories[t].region.toLowerCase()
 								+ "sml.png'/> <a href='/store/#cat"
@@ -820,7 +816,7 @@ jQuery(document)
 							h += "<li class='az4_list az4_store' name='store_"
 									+ dat.stores[t].id + "' id='store_store_"
 									+ dat.stores[t].cat_id + "'><img src='"
-									+ settings.api_base + "images/"
+									+ settings.image_base + "images/"
 									+ dat.stores[t].region.toLowerCase()
 									+ "sml.png'/> <a href='/store/#store"
 									+ dat.stores[t].store_id + "'>"
@@ -933,14 +929,14 @@ jQuery(document)
 			if (typeof (staticRender) == "undefined")
 				staticRender = false;
 			// add item hover fades
-			$(".az4_more", this).each(function() {
+			/*$(".az4_more", this).each(function() {
 				$(this).css('opacity', 0);
 				$(this).hover(function() {
 					$(this).stop().fadeTo(10, 1);
 				}, function() {
 					$(this).stop().fadeTo(10, 0);
 				});
-			});
+			});*/
 			// add item clicks
 			var struct = $(this);
 			$(".az4_object", this).each(function(index) {
@@ -969,9 +965,9 @@ jQuery(document)
 		loading : function(start) {
 			var settings = $(this).az4database('getSettings');
 			if (start) {
-				$("#az4_loader").stop(false, true).show(100);
+				$("#az4_loader").stop(false, true).show();
 			} else {
-				$("#az4_loader").stop(false, true).hide(100);
+				$("#az4_loader").stop(false, true).hide();
 			}
 			settings.loading = start;
 			$(this).data('settings', settings);
@@ -1157,6 +1153,7 @@ jQuery(document)
 		'region' : 'EU',
 		'jump' : false, // TODO
 		'api_base' : 'http://alphazone4.com/api/',
+		'image_base' : '',
 		'api_version' : '0.1',
 		'url' : 'http://alphazone4.com/',
 		'loading' : false,
