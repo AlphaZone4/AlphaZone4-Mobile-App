@@ -19,7 +19,7 @@
 		<gap:platform name="android" minVersion="2.1" />
 		<gap:platform name="webos" />
 		<gap:platform name="symbian.wrt" />
-		<gap:platform name="blackberry" project="widgets"/>
+		<!-- <gap:platform name="blackberry" project="widgets"/>-->
 	</gap:platforms>
 
 	<icon src="images/icon.png" gap:role="default" />
