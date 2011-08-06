@@ -28,6 +28,13 @@ createTables = function() {
 					+ "id INTEGER NOT NULL PRIMARY KEY,"
 					+ "key TEXT NOT NULL DEFAULT '', "
 					+ "data TEXT NOT NULL DEFAULT '');");
+		},
+		function(e){}, //blank error
+		function(){
+			// call dbHandles
+			for ( var i = 0; i < dbHandles.length; i++) {
+				dbHandles[i](mydb);
+			}
 		});
 	} catch (e) {
 		alert(e.message);
@@ -40,14 +47,12 @@ dbSetup = function() {
 			var shortName = 'az4db';
 			var version = '1.0';
 			var displayName = 'AlphaZone4 App Database';
-			var maxSize = 65536; // in bytes
-			mydb = openDatabase(shortName, version, displayName, maxSize);
+			var maxSize = 20000; // in bytes
+			mydb = window.openDatabase(shortName, version, displayName, maxSize);
 			// setup database tables etc.
 			createTables();
-			// call dbHandles
-			for ( var i = 0; i < dbHandles.length; i++) {
-				dbHandles[i](mydb);
-			}
+		}else{
+			alert("DB not supported?");
 		}
 	} catch (e) {
 		// Error handling code goes here.

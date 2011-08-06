@@ -18,8 +18,6 @@ newsRender = function() {
 			$("#news_list").html(h).listview("refresh");
 		if ($("#news_list_summary").length > 0)
 			$("#news_list_summary").html(h_main).listview("refresh");
-	} else {
-		newsRender();
 	}
 }
 // fetch news array from the database
@@ -53,28 +51,31 @@ newsFetchAZ4 = function(db) {
 					// data fetched, add to database
 					try {
 						db
-								.transaction(function(tx) {
-									for ( var i = 0; i < data.length; i++) {
-										// add articles to database safely
-										tx
-												.executeSql(
-														"INSERT INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?);",
-														[
-																data[i].id,
-																data[i].title,
-																data[i].excerpt,
-																data[i].article,
-																data[i].url,
-																data[i].image ],
-														function() {
-															// update the news
-															// object
-															newsFetchDb(db);
-														});
-									}
-
-								});
+								.transaction(
+										function(tx) {
+											for ( var i = 0; i < data.length; i++) {
+												// add articles to database
+												// safely
+												tx
+														.executeSql(
+																"INSERT INTO news (id, title, excerpt, article, url, image) VALUES (?, ?, ?, ?, ?, ?);",
+																[
+																		data[i].id,
+																		data[i].title,
+																		data[i].excerpt,
+																		data[i].article,
+																		data[i].url,
+																		data[i].image ]);
+											}
+										}, function(e) {
+											newsFetchDb();
+											
+										}, function() {
+											// on success, update DB
+											newsFetchDb();
+										});
 					} catch (e) {
+						alert("ERROR 3:::");
 						print_r(e);
 					}
 				},
