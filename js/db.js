@@ -51,8 +51,6 @@ dbSetup = function() {
 			mydb = window.openDatabase(shortName, version, displayName, maxSize);
 			// setup database tables etc.
 			createTables();
-		}else{
-			alert("DB not supported?");
 		}
 	} catch (e) {
 		// Error handling code goes here.
